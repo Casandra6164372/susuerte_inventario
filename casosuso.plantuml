@@ -1,2 +1,26 @@
 @startuml casossusuerteinventario
+left to right direction
+actor "Usuario" as usu     
+actor "Administrador  cigarrillos" as admin
+
+rectangle "Sistema de Inventario de Cigarrillos" {
+    usecase " ingresar cigarrillos" as UC1
+    usecase "Registrar Venta" as UC2
+    usecase "Generar Sugerencia Pedido" as UC3
+    usecase "Gestionar Pedidos Proveedor" as UC4
+    usecase "Ver Estado Inventario" as UC5
+    usecase "Configurar Puntos de Reorden" as UC6
+    usecase "Recibir Alertas de Stock" as UC7
+    }
+
+usu --> UC1
+usu --> UC2
+usu --> UC5
+admin --> UC1
+admin --> UC3
+admin --> UC4
+admin --> UC5
+admin --> UC6
+admin --> UC7
+admin --> UC2
 @enduml
