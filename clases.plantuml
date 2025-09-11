@@ -1,0 +1,74 @@
+@startuml clasesinventarios
+
+class Usuarios {
+    -id: int
+    -nombre: string 
+    -correocorporativo:string
+    +iniciarsesion(): booleran
+
+}
+
+
+
+class Administrador {
+    +realizarPedido(menu: Menu,ites: List<item>,metodoPago:String ): Pedido
+
+}
+
+class Inventario {
+    + gestionarMenu():void 
+    + actualizarStock():void
+    + generarSugerenciaPedido(Pedido,tiempo: int): void
+    
+}
+class menu{
+    - id: int 
+    - fecha: List<String>    
+    - items : List<Item>
+    + mostrarMenu(): 
+}
+class item {
+    - id: int 
+    - nombre: string 
+    - precio :double
+    - stock: int 
+    - getPrecio (): dotted
+    + actualizarStock(cantidad: int): void
+}
+class Pedido{
+    - id: int
+    - fechaHora: Date
+    - estado: String 
+    - metodoPago: String
+    - tiempoEntrega: int
+    + calcularTotal(): double
+    + actualizarEstado(nuevoEstado: String): void
+
+
+}
+class Notificacion{
+    - id: int
+    -mensaje: String
+    -fechaEnvio: Date
+    + enviarNotificacion(usuario: Usuario): void
+
+}
+class Proveedor{
+    - id: int
+    - nombre: String
+    - contacto: String
+    + recibirPedido(pedido: Pedido): void
+}
+
+Usuario <|-- Administrador
+Administrador <|-- Pedido    
+Menu "1" --> "*" Item
+Inventario "1" --> "1" Pedido
+Pedido "1" --> "1" Usuario
+Pedido "1" --> "1" Proveedor    
+Notificacion "1" --> "1" Usuario
+Inventario "1" --> "1" Menu         
+
+
+
+@enduml
